@@ -2,12 +2,17 @@ import time
 import glob
 import os
 import shutil
+import json
+from datetime import datetime, timezone
 
 source_path = '/home/webcamuser/img/'
 source_img_pattern = 'photo*.jpg'
 dest_path = 'pub'
 
-latest_img_name = "current.img"
+latest_img_name = "current.jpg"
+current_file_id_file = "current.json"
+next_file_id_file = "inwork.json"
+
 file_timeout_sec = 10
 
 
@@ -66,6 +71,22 @@ def copy_file(source, dest_path, latest_img_name):
     print(f"copying: {source} to {dest}")
     with open(dest, "wb") as fout:
         fout.write(filedata)
+    shutil.copystat(source, dest)
+    update_file_info()
+
+def update_file_info():
+    info = {"current":{
+        "name":latest_img_name,
+        "time": datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
+        }}
+
+    inwork = os.path.join(dest_path, next_file_id_file)
+    final = os.path.join(dest_path, current_file_id_file)
+
+    with open(inwork, "w") as fout:
+        json.dump(fout, info)
+
+    shutil.move(inwork, final)
 
 def loop():
     while True:
