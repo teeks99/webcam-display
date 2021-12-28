@@ -10,7 +10,7 @@
     </div>
 </body>
 <script>
-    var lastTimestamp = "";
+    var lastTimestamp = new Date(0);
 
     function showDataWithImages() {
 
@@ -29,12 +29,17 @@
             var data = {};
             data = JSON.parse(json); 	// Populate array with JSON data.
 
-            var img = document.getElementById('camera-image');
-            img.src = data.current.name;
+            currentImageTimestamp = Date.parse(data.current.time);
 
-            var divTimestamp = document.getElementById('timestamp');
-            divTimestamp.innerHTML = data.current.time;
-            lastTimestamp = data.current.time;
+            if(lastTimestamp < currentImageTimestamp){
+                var img = document.getElementById('camera-image');
+                img.src = data.current.name;
+                Console.log(data.current.name);
+
+                var divTimestamp = document.getElementById('timestamp');
+                divTimestamp.innerHTML = currentImageTimestamp
+                lastTimestamp = currentImageTimestamp;
+            }
         }
     }
 </script>
