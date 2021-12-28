@@ -29,7 +29,7 @@
             var data = {};
             data = JSON.parse(json); 	// Populate array with JSON data.
 
-            currentImageTimestamp = Date.parse(data.current.time);
+            currentImageTimestamp = new Date(data.current.time);
 
             if(lastTimestamp < currentImageTimestamp){
                 var img = document.getElementById('camera-image');
@@ -38,10 +38,6 @@
 
                 var divTimestamp = document.getElementById('timestamp');
                 divTimestamp.innerHTML = currentImageTimestamp.toString();
-                console.log(currentImageTimestamp);
-                console.log(currentImageTimestamp.toString());
-                console.log(currentImageTimestamp.toISOString());
-                console.log(currentImageTimestamp.getSeconds());
                 lastTimestamp = currentImageTimestamp;
             }
         }
