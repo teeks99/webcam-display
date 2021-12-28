@@ -166,30 +166,32 @@ def update_priors():
 
     if (prior_count * seperation_sec) % 3600 == 0:
         print("Hourly update")
-        for hour in range(23, 1, -1):
+        for hour in range(23, 0, -1):
             oldh = '{:02}'.format(hour)
             newh = '{:02}'.format(hour+1)
             copy_prior(f"prior-{oldh}h.jpg", f"prior-{newh}h.jpg")
 
         copy_prior("prior-50m.jpg", "prior-01h.jpg")
 
-    if (prior_count * seperation_sec) % 60 == 0:
-        print("Minute Update")
-        for min in range (50, 10, -10):
+    if (prior_count * seperation_sec) % 600 == 0:
+        print("Ten Minute Update")
+        for min in range (50, 0, -10):
             oldm = '{:02}'.format(min)
             newm = '{:02}'.format(min+10)
             copy_prior(f"prior-{oldm}m.jpg", f"prior-{newm}m.jpg")
 
         copy_prior("prior-09m.jpg", "prior-10m.jpg")
 
-        for min in range(8, 1, -1):
+    if (prior_count * seperation_sec) % 60 == 0:
+        print("One Minute Update")
+        for min in range(8, 0, -1):
             oldm = '{:02}'.format(min)
             newm = '{:02}'.format(min+1)
             copy_prior(f"prior-{oldm}m.jpg", f"prior-{newm}m.jpg")
 
         copy_prior("prior-50s.jpg", "prior-01m.jpg")
 
-    for sec in range (50, 10, -10):
+    for sec in range (50, 0, -10):
         olds = '{:02}'.format(sec)
         news = '{:02}'.format(sec+10)
         copy_prior(f"prior-{olds}s.jpg", f"prior-{news}s.jpg")
