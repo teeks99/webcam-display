@@ -3,7 +3,6 @@
     <title>Webcam Output</title>
 </head>
 <body>
-    <p><input type="button" onclick="showDataWithImages()" value="Show Images" /></p>
     <div id='camera'>
         <img id='camera-image' width="100%">
         <div id='timestamp'></div>
@@ -13,6 +12,7 @@
     var lastTimestamp = new Date(0);
 
     setInterval(showDataWithImages, 2000);
+    showDataWithImages();
 
     function showDataWithImages() {
 

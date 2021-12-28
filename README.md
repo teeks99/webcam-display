@@ -17,11 +17,12 @@ a directory on the server.
     *   ~~Creates a very small json file with the most recent image timestamp (UTC) in it~~
     *   ~~Create a json file with all the prior timestamps in it.~~
 *   Web interface
-    *   Simple static html + javascript 
-    *   Displays timestamp for image (in user's timezone)
-    *   Javascript automatically checks the json file to see if the images need to be refreshed
+    *   ~~Simple static html + javascript~~
+    *   ~~Displays timestamp for image (in user's timezone)~~
+    *   ~~Javascript automatically checks the json file to see if the images need to be refreshed~~
     *   Ability to scroll back through prior stored images
-    *   Scales with window size, automatically picks correct .jpeg
+    *   ~~Scales with window size~~
+        *  automatically picks correct .jpeg for size
 
 ## Webcam Setup
 
