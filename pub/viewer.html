@@ -4,7 +4,10 @@
 </head>
 <body>
     <p><input type="button" onclick="showDataWithImages()" value="Show Images" /></p>
-    <div id='camera'></div>
+    <div id='camera'>
+        <img id='camera-image' width="100%">
+        <div id='timestamp'></div>
+    </div>
 </body>
 <script>
     function showDataWithImages() {
@@ -24,17 +27,11 @@
             var data = {};
             data = JSON.parse(json); 	// Populate array with JSON data.
 
-            var div = document.getElementById('camera');     // The parent <div>.
-            div.innerHTML = '';
+            var img = document.getElementById('camera-image');
+            img.src = data.current.name;
 
-            var img = document.createElement('img');
-            img.src = data.current.name
-
-            var divTimestamp = document.createElement('div');
+            var divTimestamp = document.getElementById('timestamp');
             divTimestamp.innerHTML = data.current.time;
-
-            div.appendChild(img)
-            div.appendChild(divTimestamp)
         }
     }
 </script>
