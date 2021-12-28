@@ -159,6 +159,7 @@ def copy_prior(source, dest):
         info["timeline"][dest]["time"] = info["timeline"][source]["time"]
 
 def update_priors():
+    global prior_count
     seperation_sec = 10
 
     if (prior_count * seperation_sec) % 3600 == 0:
@@ -195,7 +196,6 @@ def update_priors():
     with open(os.path.join(dest_path, info_file), "w") as fout:
         json.dump(info, fout)
 
-    global prior_count
     prior_count += 1
 
 def loop():
