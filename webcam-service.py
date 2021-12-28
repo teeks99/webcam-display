@@ -73,9 +73,10 @@ def ensure_output_dir(dest_path):
         os.mkdir(dest_path)
 
 def load_existing_info(info_path):
-    with open(info_path, "r") as fin:
-        global info
-        info = json.load(fin)
+    if os.path.exists(info_path):
+        with open(info_path, "r") as fin:
+            global info
+            info = json.load(fin)
 
 def get_matching_files(source_path, source_img_pattern):
     return glob.glob(source_path + source_img_pattern)
