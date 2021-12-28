@@ -19,6 +19,7 @@ prior_count = 0
 
 info_file = "info.json"
 info = {
+    "total_updates": 0,
     "timeline" : {
         latest_img_name: { "time": 0},
         "prior-00s.jpg": {"time": 0},
@@ -160,9 +161,11 @@ def copy_prior(source, dest):
 
 def update_priors():
     global prior_count
+    global info
     seperation_sec = 10
 
     if (prior_count * seperation_sec) % 3600 == 0:
+        print("Hourly update")
         for hour in range(1, 23):
             oldh = '{:02}'.format(hour)
             newh = '{:02}'.format(hour+1)
@@ -171,6 +174,7 @@ def update_priors():
         copy_prior("prior-50m.jpg", "prior-01h.jpg")
 
     if (prior_count * seperation_sec) % 60 == 0:
+        print("Minute Update")
         for min in range (10, 50, 10):
             oldm = '{:02}'.format(min)
             newm = '{:02}'.format(min+10)
@@ -193,10 +197,12 @@ def update_priors():
     copy_prior("prior-00s.jpg", "prior-10s.jpg")
     copy_prior(latest_img_name, "prior-00s.jpg")
 
+    prior_count += 1
+
+    info["total_updates"] = prior_count
+
     with open(os.path.join(dest_path, info_file), "w") as fout:
         json.dump(info, fout)
-
-    prior_count += 1
 
 def loop():
     while True:
