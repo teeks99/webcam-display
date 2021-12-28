@@ -150,7 +150,7 @@ def update_file_info():
 
 def copy_prior(source, dest):
     source_file = os.path.join(dest_path, source)
-    dest_file = os.path.joing(dest_path, dest)
+    dest_file = os.path.join(dest_path, dest)
     if os.path.exists(source_file):
         shutil.copy(source_file, dest_file)
 
