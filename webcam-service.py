@@ -155,8 +155,8 @@ def copy_prior(source, dest):
     if os.path.exists(source_file):
         shutil.copy(source_file, dest_file)
 
-    global info
-    info["timeline"][dest]["time"] = info["timeline"][source]["time"]
+        global info
+        info["timeline"][dest]["time"] = info["timeline"][source]["time"]
 
 def update_priors():
     seperation_sec = 10
