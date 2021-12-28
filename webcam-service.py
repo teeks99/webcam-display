@@ -73,6 +73,7 @@ def ensure_output_dir(dest_path):
         os.mkdir(dest_path)
 
 def load_existing_info(info_path):
+    info_path = os.path.join(dest_path, info_path)
     if os.path.exists(info_path):
         with open(info_path, "r") as fin:
             global info
