@@ -37,7 +37,7 @@
                 console.log(data.current.name);
 
                 var divTimestamp = document.getElementById('timestamp');
-                divTimestamp.innerHTML = currentImageTimestamp
+                divTimestamp.innerHTML = currentImageTimestamp[Symbol.toPrimitive]('string');
                 lastTimestamp = currentImageTimestamp;
             }
         }
