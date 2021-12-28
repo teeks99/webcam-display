@@ -12,6 +12,8 @@
 <script>
     var lastTimestamp = new Date(0);
 
+    setInterval(showDataWithImages, 2000);
+
     function showDataWithImages() {
 
         var oXHR = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -32,9 +34,10 @@
             currentImageTimestamp = new Date(data.current.time);
 
             if(lastTimestamp < currentImageTimestamp){
+                console.log("New image available for " + currentImageTimestamp.toString());
+
                 var img = document.getElementById('camera-image');
                 img.src = data.current.name;
-                console.log(data.current.name);
 
                 var divTimestamp = document.getElementById('timestamp');
                 divTimestamp.innerHTML = currentImageTimestamp.toString();
