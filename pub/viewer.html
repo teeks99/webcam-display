@@ -34,7 +34,7 @@
             if(lastTimestamp < currentImageTimestamp){
                 var img = document.getElementById('camera-image');
                 img.src = data.current.name;
-                Console.log(data.current.name);
+                console.log(data.current.name);
 
                 var divTimestamp = document.getElementById('timestamp');
                 divTimestamp.innerHTML = currentImageTimestamp
