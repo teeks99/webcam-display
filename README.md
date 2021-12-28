@@ -11,12 +11,14 @@ a directory on the server.
     *   Run as systemd service
     *   Take config options of a path for source images, path for output images, image pattern 
         (e.g. `photo_2021-12-27_07-36-22.jpg` -> `photo_*.jpg`)
-    *   Output current image as `current.jpg`
-    *   Keep a set of prior images....6 for last minute, 10 for last 10 min, 6 for last hour, 24, for last day....?
+    *   ~~Output current image as `current.jpg`~~
+    *   Keep a set of prior images....6 for last minute, 10 for last 10 min, 6 for last hour, 24, for last day.
     *   Keep also as lower resolution images for lower res display
+    *   Creates a very small json file with the most recent image timestamp (UTC) in it
 *   Web interface
     *   Simple static html + javascript 
-    *   Javascript automatically refreshes image ever X (10?, way to check for new timestamp?) seconds
+    *   Displays timestamp for image (in user's timezone)
+    *   Javascript automatically checks the json file to see if the images need to be refreshed
     *   Ability to scroll back through prior stored images
     *   Scales with window size, automatically picks correct .jpeg
 
