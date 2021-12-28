@@ -10,6 +10,8 @@
     </div>
 </body>
 <script>
+    var lastTimestamp = "";
+
     function showDataWithImages() {
 
         var oXHR = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -32,6 +34,7 @@
 
             var divTimestamp = document.getElementById('timestamp');
             divTimestamp.innerHTML = data.current.time;
+            lastTimestamp = data.current.time;
         }
     }
 </script>
