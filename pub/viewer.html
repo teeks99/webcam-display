@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Webcam Output</title>
+</head>
+<body>
+    <p><input type="button" onclick="showDataWithImages()" value="Show Images" /></p>
+    <div id='camera'></div>
+</body>
+<script>
+    function showDataWithImages() {
+
+        var oXHR = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+        function reportStatus() {
+            if (oXHR.readyState == 4)               // Request completed.
+                showImages(this.responseText);     // All set. Now show the data.
+        }
+
+        oXHR.onreadystatechange = reportStatus;
+        oXHR.open("GET", "current.json", true);   // true = asynchronous request, false = synchronous request.
+        oXHR.send();
+
+        function showImages(json) {
+            var data = {};
+            data = JSON.parse(json); 	// Populate array with JSON data.
+
+            var div = document.getElementById('camera');     // The parent <div>.
+            div.innerHTML = '';
+
+            var img = document.createElement('img');
+            img.src = data.current.name
+
+            var divTimestamp = document.createElement('div');
+            divTimestamp.innerHTML = data.current.time;
+
+            div.appendChild(img)
+            div.appendChild(divTimestamp)
+        }
+    }
+</script>
