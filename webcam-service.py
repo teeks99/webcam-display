@@ -138,7 +138,7 @@ def update_file_info():
         "name": latest_img_name,
         "time": timestamp
         }}
-    info["timeline"][latest_img_name][time] = timestamp
+    info["timeline"][latest_img_name]["time"] = timestamp
 
     inwork = os.path.join(dest_path, next_file_id_file)
     final = os.path.join(dest_path, current_file_id_file)
@@ -155,7 +155,7 @@ def copy_prior(source, dest):
         shutil.copy(source_file, dest_file)
 
     global info
-    info["timeline"][dest][time] = info["timeline"][source][time]
+    info["timeline"][dest]["time"] = info["timeline"][source]["time"]
 
 def update_priors():
     seperation_sec = 10
