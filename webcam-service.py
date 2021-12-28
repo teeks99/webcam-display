@@ -192,7 +192,7 @@ def update_priors():
     copy_prior("prior-00s.jpg", "prior-10s.jpg")
     copy_prior(latest_img_name, "prior-00s.jpg")
 
-    with open(info_file, "w") as fout:
+    with open(os.path.join(dest_path, info_file), "w") as fout:
         json.dump(info, fout)
 
 def loop():
