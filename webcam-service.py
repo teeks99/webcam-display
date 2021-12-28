@@ -76,7 +76,7 @@ def copy_file(source, dest_path, latest_img_name):
 
 def update_file_info():
     info = {"current":{
-        "name":latest_img_name,
+        "name": latest_img_name,
         "time": datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
         }}
 
@@ -84,7 +84,7 @@ def update_file_info():
     final = os.path.join(dest_path, current_file_id_file)
 
     with open(inwork, "w") as fout:
-        json.dump(fout, info)
+        json.dump(info, fout)
 
     shutil.move(inwork, final)
 
