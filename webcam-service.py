@@ -155,7 +155,9 @@ def update_file_info():
     current_info = {"current":{
         "name": latest_img_name,
         "time": timestamp
-        }}
+        
+        },
+        "sizes": sizes}
     info["timeline"][latest_img_name]["time"] = timestamp
 
     inwork = os.path.join(dest_path, next_file_id_file)
