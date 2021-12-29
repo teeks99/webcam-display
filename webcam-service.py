@@ -4,9 +4,13 @@ import os
 import shutil
 import json
 from datetime import datetime, timezone
+from string import Template
 
 source_path = '/home/webcamuser/img/'
 source_img_pattern = 'photo*.jpg'
+
+title = "Teeks99 SkyCam"
+
 dest_path = 'pub'
 
 latest_img_name = "current.jpg"
@@ -72,6 +76,16 @@ info = {
 def ensure_output_dir(dest_path):
     if not os.path.exists(dest_path):
         os.mkdir(dest_path)
+
+def generate_viewer(dest_path, title):
+    template_file = ""
+    with open("viewer.html.template", "r") as fin:
+        template_file = fin.read()
+
+    t = Template(template_file)
+    out = t.substitute(title=title)
+    with open(os.path.join(dest_path, "viewer.html"), "w") as fout:
+        fout.write(out)
 
 def load_existing_info(info_path):
     info_path = os.path.join(dest_path, info_path)
@@ -218,5 +232,7 @@ def loop():
 
 if __name__ == "__main__":
     ensure_output_dir(dest_path)
+    generate_viewer(dest_path, title)
     load_existing_info(info_file)
+
     loop()
