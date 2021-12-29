@@ -1,3 +1,12 @@
+# Output web static files
+pub/
+
+# Virtual Environment
+venv/
+
+
+#### Automatically loaded python from github
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -100,15 +109,6 @@ celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
 
 # Spyder project settings
 .spyderproject

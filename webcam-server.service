@@ -1,0 +1,15 @@
+[Unit]
+Description=Webcam Server Service
+After=syslog.target
+
+[Service]
+Type=simple
+User=webcamsvc
+Group=webcamsvc
+WorkingDirectory=PATH TO YOUR GIT REPO
+ExecStart=PATH TO YOUR GIT REPO/venv/bin/python3 webcam-service.py
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

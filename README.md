@@ -5,6 +5,20 @@ This repo contains the server components needed to display the images uploaded f
 a webcam is listed below in the Webcam Setup section, but this will work with any set of time-stamped images placed in 
 a directory on the server.
 
+
+# Setup
+
+1.  Clone this repo to a location where it can statically run from. For this example I'll be using
+`/mnt/fs/Webserver/webcam-display`. 
+2.  Create the virtual environment inside there in the `venv` subdirectory: `python3 -m venv venv`
+3.  Activate the venv `source venv/bin/activate`
+4.  Install pre-requisites `pip3 install -r requirements.txt`
+5.  Create a user to run the service `adduser --system --no-create-home --group webcamsvc`
+6.  Update the `webcam-server.service` to include the paths to your repo.
+7.  Move the `webcam-server.service` to the systemd service path:  `/lib/systemd/system/`
+8.  Enable the service `systemctl enable webcam-server.service`
+9.  Start the service `systemctl start webcam-server.service`
+
 ## TODO Items
 
 *   Python script
