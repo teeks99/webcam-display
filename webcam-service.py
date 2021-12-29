@@ -176,7 +176,7 @@ def sized_copies(fpath):
         for size in sizes:
             timg = img.copy()
             timg.thumbnail((size, size))
-            timg.save(f"{fname}_{size}.{ext}", "JPEG")
+            timg.save(f"{fname}_{size}{ext}", "JPEG")
 
     info["original_height"] = img.height
     info["original_width"] = img.width
@@ -194,8 +194,8 @@ def copy_prior(source, dest):
         shutil.copy(source_file, dest_file)
 
         for size in info["sizes"]:
-            sf = f"{source_filepre}_{size}.{source_ext}"
-            df = f"{dest_filepre}_{size}.{dest_ext}"
+            sf = f"{source_filepre}_{size}{source_ext}"
+            df = f"{dest_filepre}_{size}{dest_ext}"
             if os.path.exists(sf):
                 shutil.copy(sf, df)
             else:
