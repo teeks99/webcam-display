@@ -183,6 +183,7 @@ def sized_copies(fpath):
     info["sizes"] = sizes
 
 def copy_prior(source, dest):
+    global info
     source_file = os.path.join(dest_path, source)
     dest_file = os.path.join(dest_path, dest)
 
@@ -200,7 +201,6 @@ def copy_prior(source, dest):
             else:
                 print(f"Error - sized copy doesn't exist: {sf}")
 
-        global info
         info["timeline"][dest]["time"] = info["timeline"][source]["time"]
 
 def update_priors():
