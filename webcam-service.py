@@ -5,6 +5,7 @@ import shutil
 import json
 from datetime import datetime, timezone
 from string import Template
+from PIL import Image
 
 source_path = '/home/webcamuser/img/'
 source_img_pattern = 'photo*.jpg'
@@ -147,6 +148,7 @@ def copy_file(source, dest_path, latest_img_name):
         fout.write(filedata)
     shutil.copystat(source, dest)
     update_file_info()
+    sized_copies(dest)
 
 def update_file_info():
     timestamp = datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
@@ -164,11 +166,39 @@ def update_file_info():
 
     shutil.move(inwork, final)
 
+def sized_copies(fpath):
+    global info
+    fname, ext = os.path.splitext(fpath)
+
+    sizes = [2048, 1024, 512, 256]
+
+    with Image.open(fpath) as img:
+        for size in sizes:
+            timg = img.copy()
+            timg.thumbnail((size, size))
+            timg.save(f"{fname}_{size}.{ext}", "JPEG")
+
+    info["original_height"] = img.height
+    info["original_width"] = img.width
+    info["sizes"] = sizes
+
 def copy_prior(source, dest):
     source_file = os.path.join(dest_path, source)
     dest_file = os.path.join(dest_path, dest)
+
+    source_filepre, source_ext = os.path.splitext(source_file)
+    dest_filepre, dest_ext = os.path.splitext(dest_file)
+
     if os.path.exists(source_file):
         shutil.copy(source_file, dest_file)
+
+        for size in info["sizes"]:
+            sf = f"{source_filepre}_{size}.{source_ext}"
+            df = f"{dest_filepre}_{size}.{dest_ext}"
+            if os.path.exists(sf):
+                shutil.copy(sf, df)
+            else:
+                print(f"Error - sized copy doesn't exist: {sf}")
 
         global info
         info["timeline"][dest]["time"] = info["timeline"][source]["time"]
