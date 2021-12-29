@@ -51,7 +51,7 @@
                 var img = document.getElementById('camera-image');
                 var imgPath = data.current.name;
 
-                sorted_sizes.every(function(width){
+                sortedSizes.every(function(width){
                     if(getWidth() < width)
                     {
                         basePath = imgPath.substring(0, imgPath.lastIndexOf("."));
