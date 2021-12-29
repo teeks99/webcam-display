@@ -19,8 +19,8 @@ current_file_id_file = "current.json"
 next_file_id_file = "inwork.json"
 
 file_timeout_sec = 10
-
 prior_count = 0
+sizes = [2048, 1024, 512, 256]
 
 info_file = "info.json"
 info = {
@@ -170,7 +170,6 @@ def sized_copies(fpath):
     global info
     fname, ext = os.path.splitext(fpath)
 
-    sizes = [2048, 1024, 512, 256]
 
     with Image.open(fpath) as img:
         for size in sizes:

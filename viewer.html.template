@@ -14,6 +14,16 @@
     setInterval(showDataWithImages, 2000);
     showDataWithImages();
 
+    function getWidth() {
+        return Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.offsetWidth,
+            document.documentElement.clientWidth
+        );
+    }
+
     function showDataWithImages() {
 
         var oXHR = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -31,13 +41,30 @@
             var data = {};
             data = JSON.parse(json); 	// Populate array with JSON data.
 
+            sortedSizes = data.sizes.sort(function(a, b){return a-b});
+
             currentImageTimestamp = new Date(data.current.time);
 
             if(lastTimestamp < currentImageTimestamp){
                 console.log("New image available for " + currentImageTimestamp.toString());
 
                 var img = document.getElementById('camera-image');
-                img.src = data.current.name;
+                var imgPath = data.current.name;
+
+                sorted_sizes.every(function(width){
+                    if(getWidth() < width)
+                    {
+                        basePath = imgPath.substring(0, imgPath.lastIndexOf("."));
+                        ext = imgPath.substring(imgPath.lastIndexOf("."))
+
+                        imgPath = basePath + "_" + width + ext;
+
+                        return false; // like a break in a for loop
+                    }
+                    return true;
+                });
+                console.log("Image Path: " + imgPath);
+                img.src = imgPath;
 
                 var divTimestamp = document.getElementById('timestamp');
                 divTimestamp.innerHTML = currentImageTimestamp.toString();
