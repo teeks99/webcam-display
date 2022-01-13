@@ -49,7 +49,7 @@
                 console.log("New image available for " + currentImageTimestamp.toString());
 
                 var img = document.getElementById('camera-image');
-                var imgPath = data.current.name;
+                var imgPath = data.current.name + "#" + currentImageTimestamp;
 
                 sortedSizes.every(function(width){
                     if(getWidth() < width)

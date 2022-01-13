@@ -22,12 +22,12 @@ a directory on the server.
 ## TODO Items
 
 *   Python script
-    *   Run as systemd service
+    *   ~~Run as systemd service~~
     *   Take config options of a path for source images, path for output images, image pattern 
-        (e.g. `photo_2021-12-27_07-36-22.jpg` -> `photo_*.jpg`)
+        (e.g. `photo_2021-12-27_07-36-22.jpg` -> `photo_*.jpg`)....currently just set this in the top of the script
     *   ~~Output current image as `current.jpg`~~
     *   ~~Keep a set of prior images....6 for last minute, 10 for last 10 min, 6 for last hour, 24, for last day.~~
-    *   Keep also as lower resolution images for lower res display
+    *   ~~Keep also as lower resolution images for lower res display~~
     *   ~~Creates a very small json file with the most recent image timestamp (UTC) in it~~
     *   ~~Create a json file with all the prior timestamps in it.~~
 *   Web interface
@@ -36,7 +36,7 @@ a directory on the server.
     *   ~~Javascript automatically checks the json file to see if the images need to be refreshed~~
     *   Ability to scroll back through prior stored images
     *   ~~Scales with window size~~
-        *  automatically picks correct .jpeg for size
+        *  ~~automatically picks correct .jpeg for size~~
 
 ## Webcam Setup
 
