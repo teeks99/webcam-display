@@ -274,6 +274,7 @@ def loop():
 if __name__ == "__main__":
     ensure_output_dir(dest_path)
     generate_viewer(dest_path, title)
+    generate_httaccess(dest_path)
     load_existing_info(info_file)
 
     loop()
