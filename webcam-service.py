@@ -89,14 +89,7 @@ def generate_viewer(dest_path, title):
         fout.write(out)
 
 def generate_httaccess(dest_path):
-    template_file = ""
-    with open(".htaccess.template", "r") as fin:
-        template_file = fin.read()
-
-    t = Template(template_file)
-    out = t.substitute()
-    with open(os.path.join(dest_path, ".htaccess"), "w") as fout:
-        fout.write(out)
+    shutil.copy(".htaccess.template", os.path.join(dest_path, ".htaccess"))
 
 def load_existing_info(info_path):
     info_path = os.path.join(dest_path, info_path)
